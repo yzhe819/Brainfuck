@@ -25,7 +25,7 @@ int main(int argc, char** argv) {
             case '>': p++; break;  // Increment pointer position
             case '<': p--; break;  // Decrement cursor position
             case '.': putchar((int)(*p)); break;  // Output current value
-            case ',': (*p) = getchar(); break;  // Input current value
+            case ',': (*p) = getchar(); while ((getchar()) != '\n'); break;  // Input current value
             case '[': // Jump forward to the matching ] if the byte at the pointer is zero.
                 if (*p) { stack[stack_length++] = i; } // is not zero, mark the [ position into the stack
                 else {

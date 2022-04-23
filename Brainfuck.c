@@ -41,6 +41,7 @@ int main(int argc, char** argv) {
                 break;
             case ',':  // Input current value
                 (*p) = getchar();
+                while ((getchar()) != '\n');  // flushes the standard input
                 break;
             case '[':
                 // Jump forward past the matching ] if the byte at the
