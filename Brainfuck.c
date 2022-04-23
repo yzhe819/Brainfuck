@@ -8,7 +8,6 @@ int stack[100];
 int stack_length = 0;
 
 int main(int argc, char** argv) {
-    char c;  // the current character
     int i = 0, j, k;
     FILE* f;
     char* p = s + 10000;
