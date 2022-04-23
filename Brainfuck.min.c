@@ -33,8 +33,8 @@ int main(int argc, char** argv) {
                     do { // count and check ]
                         code[k] == '[' && j++; code[k] == ']' && j--; k++;
                     } while (k < length && j != 0); // looping for multiple nested []
-                    if (j == 0) { i = k; } // find the matched ] and jump to it
-                    else { fprintf(stderr, "%s:%dn", __FILE__, __LINE__); return 3; } // file error, not matched ]
+                    if (j == 0) { i = k; } // find the matching ] and jump to it
+                    else { fprintf(stderr, "%s:%dn", __FILE__, __LINE__); return 3; } // file error, not matching ]
                 }
                 break;
             case ']': // Jump back to the previous [ if the byte at the pointer is nonzero.

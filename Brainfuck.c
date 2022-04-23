@@ -8,9 +8,9 @@ int stack[100];
 int stack_length = 0;
 
 int main(int argc, char** argv) {
-    int i = 0, j, k;
     FILE* f;
     char* p = s + 10000;
+    int i = 0, j, k;
 
     // read the input file
     f = fopen(argv[1], "r");
@@ -49,17 +49,15 @@ int main(int argc, char** argv) {
                     // mark the current position into the stack
                     stack[stack_length++] = i;
                 } else {
-                    // this for loop this used to handle multiple nested []
-                    // loops in brainfuck
+                    // this for loop is used to handle multiple nested []
                     for (k = i, j = 0; k < length; k++) {
                         // count the required number of ]
                         code[k] == '[' && j++;
-                        // find the match ], reduce the counter
+                        // found the matching ], reduce the counter
                         code[k] == ']' && j--;
                         if (j == 0)
-                            // if the counter is zero, which means jump to the
-                            // next ] position, break the switch (NOT the while
-                            // loop)
+                            // if the counter is zero, which means found the
+                            // matching ], break for loop
                             break;
                     }
                     if (j == 0) {
@@ -75,9 +73,10 @@ int main(int argc, char** argv) {
             case ']':
                 // Jump back to the matching [ if the byte at the pointer
                 // is nonzero.
-                // return to the marked position and continue the while loop
-                // this minus 1 will be cancel by i++ at the end of the loop
-                i = stack[--stack_length] - 1;
+                if (*p) {
+                    i = stack[--stack_length];
+                    i--;  // this minus 1 will be cancel by following i++
+                }
                 break;
             default:
                 break;
