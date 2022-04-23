@@ -44,7 +44,7 @@ Then, you can drag the Hello.BF file into this Brainfuck.exe.
 Or run with the following command line below, it will read the entire file and print the output.
 
 ```shell
-Brainfuck ./Hello.BF
+.\Brainfuck ./Hello.BF
 ```
 
 Finally, you can see the "Hello, World!" appear on your screen.
@@ -56,4 +56,25 @@ Hello, World!
 
 
 
+### Code:
+
+#### Arithmetic:
+
+- [Addition](https://github.com/yzhe819/Brainfuck/blob/main/arithmetic/Addition.bf)
+
+  ```bash
+  ,>,[<+>-]<------------------------------------------------.
+  ```
+
+- [Subtraction](https://github.com/yzhe819/Brainfuck/blob/main/arithmetic/Subtraction.bf)
+
+  ```bash
+  ,>,[<->-]<++++++++++++++++++++++++++++++++++++++++++++++++.
+  ```
+
+
+
+#### Source code:![source code](./images/source.png)
+
 Feel free to modify the program and code and hope to have fun.
+

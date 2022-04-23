@@ -38,7 +38,7 @@ int main(int argc, char** argv) {
                 }
                 break;
             case ']': // Jump back to the previous [ if the byte at the pointer is nonzero.
-                if (*p) { i = stack[--stack_length] - 1; break; }
+                if (*p) { i = stack[--stack_length] - 1; } break;
             default: break;
         }
         i++;
