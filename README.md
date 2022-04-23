@@ -78,3 +78,9 @@ Hello, World!
 
 Feel free to modify the program and code and hope to have fun.
 
+
+
+### Reference:
+
+- [ Basics of BrainFuck ](https://gist.github.com/roachhd/dce54bec8ba55fb17d3a)
+- [ archeryue / bfc ](https://github.com/archeryue/bfc)
