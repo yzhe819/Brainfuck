@@ -66,11 +66,15 @@ Hello, World!
   ,>,[<+>-]<------------------------------------------------.
   ```
 
+  ![](./images/add.png)
+
 - [Subtraction](https://github.com/yzhe819/Brainfuck/blob/main/arithmetic/Subtraction.bf)
 
   ```bash
   ,>,[<->-]<++++++++++++++++++++++++++++++++++++++++++++++++.
   ```
+  
+  ![](./images/sub.png)
 
 
 

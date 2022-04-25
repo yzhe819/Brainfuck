@@ -12,75 +12,35 @@ int main(int argc, char** argv) {
     char* p = s + 10000;
     int i = 0, j, k;
 
-    // read the input file
+    // Read the input file
     f = fopen(argv[1], "r");
-    while (fread(&code[length], 1, 1, f) == 1) {
-        length++;
-    }
-
+    while (fread(&code[length], 1, 1, f) == 1) { length++; }
     setbuf(stdout, NULL);
 
-    // the main loop
+    // Parse the code and check each character
     while (i < length) {
-        // check each character
         switch (code[i]) {
-            case '+':
-                (*p)++;  // Increment current value
-                break;
-            case '-':
-                (*p)--;  // Decrement current value
-                break;
-            case '>':
-                p++;  // Increment pointer position
-                break;
-            case '<':
-                p--;  // Decrement cursor position
-                break;
-            case '.':  // Output current value
-                putchar((int)(*p));
-                break;
-            case ',':  // Input current value
-                (*p) = getchar();
-                while ((getchar()) != '\n');  // flushes the standard input
-                break;
-            case '[':
-                // Jump forward past the matching ] if the byte at the
-                // pointer is zero.
-                if (*p) {
-                    // mark the current position into the stack
-                    stack[stack_length++] = i;
-                } else {
-                    // this for loop is used to handle multiple nested []
-                    for (k = i, j = 0; k < length; k++) {
-                        // count the required number of ]
-                        code[k] == '[' && j++;
-                        // found the matching ], reduce the counter
-                        code[k] == ']' && j--;
-                        if (j == 0)
-                            // if the counter is zero, which means found the
-                            // matching ], break for loop
-                            break;
-                    }
-                    if (j == 0) {
-                        i = k;
-                    } else {
-                        // the matching ] is not found, file error
-                        // print error message
-                        fprintf(stderr, "%s:%dn", __FILE__, __LINE__);
-                        return 3;
-                    }
+            case '+': (*p)++; break;  // Increment current value
+            case '-': (*p)--; break;  // Decrement current value
+            case '>': p++; break;  // Increment pointer position
+            case '<': p--; break;  // Decrement pointer position
+            case '.': putchar((int)(*p)); break;  // Output current value
+            case ',': (*p) = getchar(); while ((getchar()) != '\n'); break;  // Input current value
+            case ']': // Jump back to the previous [ if the byte at the pointer is nonzero.
+                if (*p) { i = stack[--stack_length] - 1; } break;
+            case '[': // Jump forward to the matching ] if the byte at the pointer is zero.
+                if (*p) { stack[stack_length++] = i; } // is not zero, mark the [ position into the stack
+                else {
+                    k = i, j = 0; // Init the position and counter
+                    do {
+                        code[k] == '[' && j++; // Count the required number of ]
+                        code[k] == ']' && j--; // Reduce the counter when found ]
+                    } while (++k < length && j != 0); // Looping for multiple nested []
+                    if (j == 0) { i = k; } // Found the matching ] and jump to it
+                    else { fprintf(stderr, "%s:%dn", __FILE__, __LINE__); return 3; } // File error, not matching ]
                 }
                 break;
-            case ']':
-                // Jump back to the matching [ if the byte at the pointer
-                // is nonzero.
-                if (*p) {
-                    i = stack[--stack_length];
-                    i--;  // this minus 1 will be cancel by following i++
-                }
-                break;
-            default:
-                break;
+            default: break;
         }
         i++;
     }
