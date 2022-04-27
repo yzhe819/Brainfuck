@@ -8,13 +8,13 @@ int stack[100];
 int stack_length = 0;
 
 int main(int argc, char** argv) {
-    FILE* f;
     char* p = s + 10000;
     int i = 0, j, k;
 
     // Read the input file
-    f = fopen(argv[1], "r");
+    FILE* f = fopen(argv[1], "r");
     while (fread(&code[length], 1, 1, f) == 1) { length++; }
+    fclose(f);
     setbuf(stdout, NULL);
 
     // Parse the code and check each character
