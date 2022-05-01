@@ -2,6 +2,8 @@
 
 Hello Brainfuck 👋
 
+
+
 ### Summary:
 
 Brainfuck is a minimalist programming language, which only consists of only eight simple commands, a data pointer and an instruction pointe. And it is fully Turing complete.
@@ -44,13 +46,13 @@ Then, you can drag the Hello.BF file into this Brainfuck.exe.
 Or run with the following command line below, it will read the entire file and print the output.
 
 ```shell
-.\Brainfuck ./Hello.BF
+./Brainfuck ./Hello.BF
 ```
 
 Finally, you can see the "Hello, World!" appear on your screen.
 
 ```shell
-PS D:\project\Brainfuck> .\Brainfuck ./Hello.BF
+PS D:\project\Brainfuck> ./Brainfuck ./Hello.BF
 Hello, World!
 ```
 
@@ -78,7 +80,11 @@ Hello, World!
 
 
 
-#### Source code:![source code](./images/source.png)
+#### Source code:
+
+The entire function can be implemented in 22 lines. The image below is a screenshot of the minimal version - Brainfuck.min.c. For a more detailed version see Brainfuck.c.
+
+![source code](./images/min.png)
 
 Feel free to modify the program and code and hope to have fun.
 

@@ -31,11 +31,10 @@ int main(int argc, char** argv) {
             case '[': // Jump forward to the matching ] if the byte at the pointer is zero.
                 if (*p) { stack[stack_length++] = i; } // is not zero, mark the [ position into the stack
                 else {
-                    k = i, j = 0; // Init the position and counter
-                    do {
+                    for (k = i, j = 0; k < length; k++) { 
                         code[k] == '[' && j++; // Count the required number of ]
                         code[k] == ']' && j--; // Reduce the counter when found ]
-                    } while (++k < length && j != 0); // Looping for multiple nested []
+                    } // Looping for multiple nested []
                     if (j == 0) { i = k; } // Found the matching ] and jump to it
                     else { fprintf(stderr, "%s:%dn", __FILE__, __LINE__); return 3; } // File error, not matching ]
                 }

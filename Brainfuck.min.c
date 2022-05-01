@@ -12,8 +12,8 @@ int main(int argc, char** argv) {
       case ',': (*p)=getchar(); while ((getchar())!='\n'); break;
       case ']': if (*p) {i=st[--stl]-1;} break;
       case '[': 
-        if (*p) {st[stl++]=i; break;}  
-        k=i, j=0; do {c[k]=='['&&j++; c[k]==']'&&j--;} while (++k<l&&j!=0);
+        if (*p) {st[stl++]=i; break;}
+        for (k=i, j=0; k<l; k++) {c[k]=='['&&j++; c[k]==']'&&j--;}
         if (j==0) {i=k; break;} goto ERROR;
     }
   }
