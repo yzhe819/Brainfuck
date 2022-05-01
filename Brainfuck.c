@@ -9,21 +9,19 @@ int stack_length = 0;
 
 int main(int argc, char** argv) {
     char* p = s + 10000;
-    int i = 0, j, k;
 
     // Read the input file
     FILE* f = fopen(argv[1], "r");
     while (fread(&code[length], 1, 1, f) == 1) { length++; }
-    fclose(f);
     setbuf(stdout, NULL);
 
     // Parse the code and check each character
-    while (i < length) {
+    for (int i = 0, j, k; i < length; i++) {
         switch (code[i]) {
             case '+': (*p)++; break;  // Increment current value
             case '-': (*p)--; break;  // Decrement current value
-            case '>': p++; break;  // Increment pointer position
-            case '<': p--; break;  // Decrement pointer position
+            case '>': p++; break;     // Increment pointer position
+            case '<': p--; break;     // Decrement pointer position
             case '.': putchar((int)(*p)); break;  // Output current value
             case ',': (*p) = getchar(); while ((getchar()) != '\n'); break;  // Input current value
             case ']': // Jump back to the previous [ if the byte at the pointer is nonzero.
@@ -39,10 +37,10 @@ int main(int argc, char** argv) {
                     else { fprintf(stderr, "%s:%dn", __FILE__, __LINE__); return 3; } // File error, not matching ]
                 }
                 break;
-            default: break;
         }
-        i++;
     }
+
+    fclose(f);
     printf("\n");
     system("pause");
     return 0;
